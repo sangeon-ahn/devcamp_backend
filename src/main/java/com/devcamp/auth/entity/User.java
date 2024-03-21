@@ -4,6 +4,8 @@ import com.devcamp.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Table(name = "users")
@@ -33,6 +35,15 @@ public class User extends BaseEntity {
 
     @Column(columnDefinition = "boolean default false")
     private boolean isPersonalInfoVerified;
+
+    @OneToOne(mappedBy = "user")
+    private RefreshToken refreshToken;
+
+    @OneToOne(mappedBy = "user")
+    private AccessToken accessToken;
+
+    @OneToMany(mappedBy = "user")
+    private List<AccessLog> accessLog;
 
     //TODO 로그인 구현 시 엑세스 토큰과 리프레시 토근, 로그인 기록 필드 추가
     public User() {}
