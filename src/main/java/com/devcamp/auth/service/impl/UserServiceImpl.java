@@ -1,11 +1,18 @@
 package com.devcamp.auth.service.impl;
 
 import com.devcamp.auth.dto.CreateUserDto;
+import com.devcamp.auth.dto.LoginResponseDto;
 import com.devcamp.auth.dto.SignupResponseDto;
+import com.devcamp.auth.dto.LoginRequestDto;
 import com.devcamp.auth.entity.User;
+import com.devcamp.auth.jwt.JwtProvider;
 import com.devcamp.auth.repository.UserRepository;
+import com.devcamp.auth.security.JwtAuthenticationFilter;
 import com.devcamp.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +24,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtProvider jwtProvider;
+    private final AuthenticationManager authenticationManager;
 
     @Override
     public SignupResponseDto signup(CreateUserDto dto) {

@@ -3,7 +3,7 @@ package com.devcamp.auth.service;
 import com.devcamp.auth.dto.CreateUserDto;
 import com.devcamp.auth.dto.LoginResponseDto;
 import com.devcamp.auth.dto.SignupResponseDto;
-import com.devcamp.auth.dto.UserLoginDto;
+import com.devcamp.auth.dto.LoginRequestDto;
 
 public interface UserService {
     /**
@@ -14,6 +14,4 @@ public interface UserService {
      */
 
     SignupResponseDto signup(CreateUserDto createUserDto);
-
-    LoginResponseDto login(UserLoginDto dto);
 }
